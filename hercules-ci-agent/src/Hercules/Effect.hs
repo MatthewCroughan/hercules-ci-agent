@@ -239,6 +239,7 @@ runEffect p@RunEffectParams {runEffectDerivation = derivation, runEffectSecretsC
               [ BindMount {pathInContainer = "/build", pathInHost = buildDir, readOnly = False},
                 BindMount {pathInContainer = "/etc", pathInHost = etcDir, readOnly = False},
                 BindMount {pathInContainer = "/secrets", pathInHost = secretsDir, readOnly = True},
+                BindMount {pathInContainer = "/hostTmp", pathInHost = "/tmp", readOnly = True},
                 -- we cannot bind mount this read-only because of https://github.com/opencontainers/runc/issues/1523
                 BindMount {pathInContainer = "/etc/resolv.conf", pathInHost = "/etc/resolv.conf", readOnly = False},
                 BindMount {pathInContainer = "/nix/var/nix/daemon-socket/socket", pathInHost = toS forwardedSocketPath, readOnly = True}
